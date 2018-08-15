@@ -5,6 +5,14 @@ This is a very basic XML serializer. It stores Java objcts in a XML file or load
 
 The idea behind is not to have to rely on extensive frameworks such as Apache Xerces to manage f.e. configuration files, but to manage with only a few classes.
 
+## Features
+
+- Serialization of objects to files and streams
+- Deserialization of objects from files and streams
+- Support of basic types, collections, dates, enums, files, maps and custom classes
+- Excluding attributes from serialization (f.e. for internal use)
+- Validation of deserialized objects
+
 ## Usage
 
 **Serialization:**
@@ -67,7 +75,9 @@ public class ConnectionDetails {
 
 ### Primitives and Strings
 
-For the primitive types boolean, byte, char, double, float, int, long, short (or their wrapper classes) and strings, the **toString()** method is called to serialize them.
+For the primitive types boolean, byte, char, double, float, int, long, short (or their wrapper classes) and strings, the toString() method is called to serialize them.
+
+**Example:**
 
 ```java
 public class Demo {
@@ -99,7 +109,9 @@ public class Demo {
 
 ### Dates, Enums and Files
 
-Dates are serialized as timestamp (number of milliseconds since January 1, 1970, 00:00:00 GMT), for Enums the string representation is stored and on the File objects the **toString()** method is called to get the full path and file name.
+Dates are serialized as timestamps (number of milliseconds since January 1, 1970, 00:00:00 GMT), for Enums the string representation is stored and on the File objects the toString() method is called to get the full path and file name.
+
+**Example:**
 
 ```java
 public class Demo {
@@ -124,6 +136,8 @@ public enum EnumType {
 ### Arrays and Collections
 
 Arrays and objects that implement the Collection interface are serialized as a list of peer elements. The array type or the generic list type serves as the node name. For collections, it should also be noted that they are only supported by inheritance.
+
+**Example:**
 
 ```java
 public class Demo {
@@ -160,6 +174,8 @@ public class FileList extends ArrayList<File> {
 
 Objects that implement the Map interface are serialized as a list of pair elements. The generic types serve as node names. It should also be noted that the maps are only supported by inheritance.
 
+**Example:**
+
 ```java
 public class Demo {
     private FileMap mapAttr = new FileMap();
@@ -187,7 +203,9 @@ public class FileMap extends HashMap<String, String> {
 
 ## Validation
 
-As already described, no DTDs and XSDs are used. In order to be able to validate the objects anyway, the deserialization checks whether the target class implements the **ObjectInputValidation** interface. If so, the deserializer executes the **validateObject()** method, and the result can then be handled by catching the **InvalidObjectException**.
+As already described, no DTDs and XSDs are used. In order to be able to validate the objects anyway, the deserialization checks whether the target class implements the ObjectInputValidation interface. If so, the deserializer executes the validateObject() method, and the result can then be handled by catching the InvalidObjectException.
+
+**Example:**
 
 ```java
 public class Demo implements ObjectInputValidation {
