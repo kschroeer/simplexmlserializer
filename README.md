@@ -3,14 +3,14 @@
 
 This is a very basic XML serializer. It stores Java objcts in a XML file or loads a XML file and map its content back to a Java object.
 
-The idea behind is not to have to rely on extensive frameworks such as Apache Xerces to manage f.e. configuration files, but to manage with only a few classes.
+The idea behind is not to have to rely on extensive frameworks such as Apache Xerces to manage e.g. configuration files, but to manage with only a few classes.
 
 ## Features
 
 - Serialization of objects to files and streams
 - Deserialization of objects from files and streams
 - Support of basic types, collections, dates, enums, files, maps and custom classes
-- Excluding attributes from serialization (f.e. for internal use)
+- Excluding attributes from serialization (e.g. for internal use)
 - Validation of deserialized objects
 
 ## Usage
